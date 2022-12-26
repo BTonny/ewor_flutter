@@ -1,0 +1,14 @@
+<svg id="Bullet_arrow_32x32_" data-name="Bullet arrow (32x32)" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.515" y1="0.141" x2="0.331" y2="1.493" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fb7208"/>
+      <stop offset="1" stop-color="red"/>
+    </linearGradient>
+  </defs>
+  <g id="transparent_bg" data-name="transparent bg" transform="translate(0 0.024)">
+    <rect id="Rectangle_61" data-name="Rectangle 61" width="32" height="31.886" fill="none"/>
+  </g>
+  <g id="Layer_1" data-name="Layer 1" transform="translate(5.054)">
+    <path id="Path_156" data-name="Path 156" d="M26.953,16,5.047,0C6.61,5.382,8.126,10.618,9.689,16,8.126,21.285,6.61,26.715,5.047,32Z" transform="translate(-5.047)" fill="url(#linear-gradient)"/>
+  </g>
+</svg>
