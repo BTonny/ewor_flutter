@@ -1,3 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ewor_flutter/widgets/image.dart';
+import 'package:ewor_flutter/widgets/screen_size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -33,6 +36,17 @@ class _StoryTileState extends State<StoryTile> {
   Widget build(BuildContext context) {
     final opacity = isHovering ? 1.0 : 0.0;
     final transform = isHovering ? hoveredTransform : defaultTransform;
+    double imageWidth = ScreenSize.isMobile(context)
+        ? 240
+        : ScreenSize.isTablet(context)
+            ? 360
+            : 450;
+
+    double imageHeight = ScreenSize.isMobile(context)
+        ? 135
+        : ScreenSize.isTablet(context)
+            ? 180
+            : 250;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
@@ -46,10 +60,10 @@ class _StoryTileState extends State<StoryTile> {
             children: [
               Container(
                 color: widget.backgroundColor,
-                child: Image.asset(
-                  widget.person.imageUrl,
-                  height: 250,
-                  width: 450,
+                child: EworImage(
+                  image: widget.person.imageUrl,
+                  width: imageWidth,
+                  height: imageHeight,
                 ),
               ),
               AnimatedOpacity(
@@ -57,8 +71,8 @@ class _StoryTileState extends State<StoryTile> {
                 duration: const Duration(milliseconds: 200),
                 opacity: opacity,
                 child: Container(
-                  height: 250,
-                  width: 450,
+                  height: imageHeight,
+                  width: imageWidth,
                   color: Colors.black.withOpacity(0.6),
                   child: Stack(
                     children: [

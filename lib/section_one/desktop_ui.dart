@@ -1,19 +1,15 @@
-import 'package:ewor_flutter/main.dart';
-import 'package:ewor_flutter/modes/person.dart';
-import 'package:ewor_flutter/widgets/gradient_colored_button.dart';
+import 'package:ewor_flutter/section_one/story_tile.dart';
 import 'package:flutter/material.dart';
 
+import '../modes/person.dart';
 import '../widgets/custom_clippers.dart';
-import 'story_tile.dart';
+import '../widgets/gradient_colored_button.dart';
+import '../widgets/screen_size.dart';
 
-class SectionOne extends StatefulWidget {
-  const SectionOne({super.key});
+class DesktopUI extends StatelessWidget {
+  final SizingInformation sizingInformation;
+  const DesktopUI({super.key, required this.sizingInformation});
 
-  @override
-  State<SectionOne> createState() => _SectionOneState();
-}
-
-class _SectionOneState extends State<SectionOne> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -44,7 +40,7 @@ class _SectionOneState extends State<SectionOne> {
                           Text(
                             "For the crazy ones.",
                             style:
-                                Theme.of(context).textTheme.headline6?.copyWith(
+                                Theme.of(context).textTheme.headline5?.copyWith(
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -75,9 +71,18 @@ class _SectionOneState extends State<SectionOne> {
                         color: const Color(0xffeaeaea),
                         padding: const EdgeInsets.all(26).copyWith(left: 200),
                         child: Row(
-                          children: const [
-                            Text(
-                                "WE HELP YOU TO FIND A STARTUP IDEA & BUILD AN IMPACTFUL COMPANY"),
+                          children: [
+                            Expanded(
+                              child: Wrap(
+                                alignment: WrapAlignment.center,
+                                children: const [
+                                  Text(
+                                    "WE HELP YOU TO FIND A STARTUP IDEA & BUILD AN IMPACTFUL COMPANY",
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -108,7 +113,7 @@ class _SectionOneState extends State<SectionOne> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: ScreenSize.height(context) / 1.8,
+                      height: 540,
                       width: 550,
                       child: Stack(
                         children: [
@@ -167,7 +172,7 @@ class _SectionOneState extends State<SectionOne> {
             ],
           ),
           const SizedBox(
-            height: 200,
+            height: 150,
           ),
           Padding(
             padding: EdgeInsets.only(left: ScreenSize.width(context) / 4),
@@ -219,9 +224,3 @@ class _SectionOneState extends State<SectionOne> {
     );
   }
 }
-
-
-// TODO: change to network images
-///lady 1 = https://ewor.io/wp-content/themes/ewor/assets/images/Group 9.png
-///man 1 = https://ewor.io/wp-content/themes/ewor/assets/images/yanick123.png
-///man 2 = https://ewor.io/wp-content/themes/ewor/assets/images/Group 11.png
