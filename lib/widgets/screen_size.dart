@@ -28,7 +28,6 @@ class ScreenSize {
 
   static DeviceScreenType getDeviceType(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
-    var orientation = mediaQuery.orientation;
 
     double deviceWidth = mediaQuery.size.width;
 
