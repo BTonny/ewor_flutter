@@ -28,7 +28,6 @@ List<Person> persons = [
     linkedInUrl: "https://www.linkedin.com/in/beth-kume-holland/",
     stories: [
       "Beth joined our 3-months pilot program in March 2020. Together with us and EBIKE Technologies GmbH, Beth created patchwork hub, a job market place for disabled workers.",
-      "During her fellowship, we constantly iterated new business models, financial plans and fundraising strategies to help Beth get off the ground.",
       "Today, patchwork hub has been named the UK’s (2020) and Europe’s (2021) most promising startup in the inclusivity space, has won F-factor and many more awards, and has had an impact on many people who would have been worse off in a world without the company.",
     ],
   ),

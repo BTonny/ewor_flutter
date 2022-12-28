@@ -35,7 +35,7 @@ class _SmallUIState extends State<SmallUI> {
     }
 
     return Container(
-      width: MediaQuery.of(context).size.width,
+      width: ScreenSize.width(context),
       padding: const EdgeInsets.only(top: 50),
       child: Stack(
         children: [

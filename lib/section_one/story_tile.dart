@@ -54,11 +54,11 @@ class _StoryTileState extends State<StoryTile> {
       transform: transform,
       child: ClipPath(
         clipper: widget.clipper,
-        child: MouseRegion(
-          onEnter: (_) => onHover(true),
-          onExit: (_) => onHover(false),
-          child: GestureDetector(
-            onTap: widget.onTap,
+        child: GestureDetector(
+          onTap: widget.onTap,
+          child: MouseRegion(
+            onEnter: (_) => onHover(true),
+            onExit: (_) => onHover(false),
             child: Stack(
               children: [
                 Container(
