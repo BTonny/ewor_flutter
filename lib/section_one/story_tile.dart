@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ewor_flutter/widgets/image.dart';
 import 'package:ewor_flutter/widgets/screen_size.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +11,7 @@ class StoryTile extends StatefulWidget {
   final Person person;
   final OverlayPosition overlayPosition;
   final bool isMiddle;
+  final Function() onTap;
   const StoryTile({
     Key? key,
     required this.clipper,
@@ -19,6 +19,7 @@ class StoryTile extends StatefulWidget {
     required this.person,
     required this.overlayPosition,
     this.isMiddle = false,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -56,71 +57,74 @@ class _StoryTileState extends State<StoryTile> {
         child: MouseRegion(
           onEnter: (_) => onHover(true),
           onExit: (_) => onHover(false),
-          child: Stack(
-            children: [
-              Container(
-                color: widget.backgroundColor,
-                child: EworImage(
-                  image: widget.person.imageUrl,
-                  width: imageWidth,
-                  height: imageHeight,
-                ),
-              ),
-              AnimatedOpacity(
-                curve: Curves.easeInOut,
-                duration: const Duration(milliseconds: 200),
-                opacity: opacity,
-                child: Container(
-                  height: imageHeight,
-                  width: imageWidth,
-                  color: Colors.black.withOpacity(0.6),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        top: widget.overlayPosition.top,
-                        left: widget.overlayPosition.left,
-                        right: widget.overlayPosition.right,
-                        bottom: widget.overlayPosition.bottom,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              widget.person.name,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .subtitle1
-                                  ?.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w100),
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  "assets/icons/bullet-arrow.svg",
-                                  height: 15,
-                                  width: 15,
-                                ),
-                                const SizedBox(width: 4),
-                                Text(
-                                  "Read ${widget.person.pronoun} story",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .subtitle2
-                                      ?.copyWith(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+          child: GestureDetector(
+            onTap: widget.onTap,
+            child: Stack(
+              children: [
+                Container(
+                  color: widget.backgroundColor,
+                  child: EworImage(
+                    image: widget.person.imageUrl,
+                    width: imageWidth,
+                    height: imageHeight,
                   ),
                 ),
-              )
-            ],
+                AnimatedOpacity(
+                  curve: Curves.easeInOut,
+                  duration: const Duration(milliseconds: 200),
+                  opacity: opacity,
+                  child: Container(
+                    height: imageHeight,
+                    width: imageWidth,
+                    color: Colors.black.withOpacity(0.6),
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          top: widget.overlayPosition.top,
+                          left: widget.overlayPosition.left,
+                          right: widget.overlayPosition.right,
+                          bottom: widget.overlayPosition.bottom,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.person.name,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle1
+                                    ?.copyWith(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w100),
+                              ),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    "assets/icons/bullet-arrow.svg",
+                                    height: 15,
+                                    width: 15,
+                                  ),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    "Read ${widget.person.pronoun} story",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle2
+                                        ?.copyWith(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

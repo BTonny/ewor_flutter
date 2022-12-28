@@ -1,3 +1,4 @@
+import 'package:ewor_flutter/section_one/story.dart';
 import 'package:ewor_flutter/section_one/story_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -6,9 +7,24 @@ import '../widgets/custom_clippers.dart';
 import '../widgets/gradient_colored_button.dart';
 import '../widgets/screen_size.dart';
 
-class DesktopUI extends StatelessWidget {
+class DesktopUI extends StatefulWidget {
   final SizingInformation sizingInformation;
   const DesktopUI({super.key, required this.sizingInformation});
+
+  @override
+  State<DesktopUI> createState() => _DesktopUIState();
+}
+
+class _DesktopUIState extends State<DesktopUI> {
+  bool showStory = false;
+  Person? selectedPerson;
+
+  onTap(bool show, Person? person) {
+    setState(() {
+      showStory = show;
+      selectedPerson = person;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,63 +125,81 @@ class DesktopUI extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                child: Stack(
                   children: [
-                    SizedBox(
-                      height: 540,
-                      width: 550,
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            top: 0,
-                            child: StoryTile(
-                              person: Person(
-                                name: "Beth Kume-Holland",
-                                imageUrl: "assets/images/lady_1.png",
-                                gender: Person.genderFemale,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 540,
+                              width: 550,
+                              child: Stack(
+                                children: [
+                                  Positioned(
+                                    top: 0,
+                                    child: StoryTile(
+                                      person: persons[0],
+                                      overlayPosition: const OverlayPosition(
+                                          top: 60, left: 100),
+                                      clipper: StoryClipperOne(),
+                                      backgroundColor: const Color(0xffD8CABF),
+                                      onTap: () {
+                                        onTap(true, persons[0]);
+                                      },
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 30,
+                                    left: 60,
+                                    child: StoryTile(
+                                      person: persons[1],
+                                      isMiddle: true,
+                                      overlayPosition: const OverlayPosition(
+                                          bottom: 60, left: 200),
+                                      clipper: StoryClipperTwo(),
+                                      backgroundColor: const Color(0xff5DA599),
+                                      onTap: () {
+                                        onTap(true, persons[1]);
+                                      },
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 290,
+                                    left: 90,
+                                    bottom: 0,
+                                    child: StoryTile(
+                                      person: persons[2],
+                                      overlayPosition: const OverlayPosition(
+                                          top: 60, left: 100),
+                                      clipper: StoryClipperOne(),
+                                      backgroundColor: const Color(0xffFBB03B),
+                                      onTap: () {
+                                        onTap(true, persons[2]);
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
-                              overlayPosition:
-                                  const OverlayPosition(top: 60, left: 100),
-                              clipper: StoryClipperOne(),
-                              backgroundColor: const Color(0xffD8CABF),
                             ),
-                          ),
-                          Positioned(
-                            top: 30,
-                            left: 60,
-                            child: StoryTile(
-                              person: Person(
-                                name: "Yannick Müller",
-                                imageUrl: "assets/images/man_1.png",
-                                gender: Person.genderMale,
-                              ),
-                              isMiddle: true,
-                              overlayPosition:
-                                  const OverlayPosition(bottom: 60, left: 200),
-                              clipper: StoryClipperTwo(),
-                              backgroundColor: const Color(0xff5DA599),
-                            ),
-                          ),
-                          Positioned(
-                            top: 290,
-                            left: 90,
-                            bottom: 0,
-                            child: StoryTile(
-                              person: Person(
-                                name: "Fabian Sinn",
-                                imageUrl: "assets/images/man_2.png",
-                                gender: Person.genderMale,
-                              ),
-                              overlayPosition:
-                                  const OverlayPosition(top: 60, left: 100),
-                              clipper: StoryClipperOne(),
-                              backgroundColor: const Color(0xffFBB03B),
-                            ),
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
+                      ],
                     ),
+                    if (selectedPerson != null)
+                      Positioned(
+                        child: Visibility(
+                          visible: showStory,
+                          child: StartUpStory(
+                            person: selectedPerson!,
+                            onClose: () {
+                              onTap(false, null);
+                            },
+                          ),
+                        ),
+                      ),
                   ],
                 ),
               ),
