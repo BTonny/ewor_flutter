@@ -40,7 +40,7 @@ class _StoryTileState extends State<StoryTile> {
     double imageWidth = ScreenSize.isMobile(context)
         ? 240
         : ScreenSize.isTablet(context)
-            ? 360
+            ? 320
             : 450;
 
     double imageHeight = ScreenSize.isMobile(context)
